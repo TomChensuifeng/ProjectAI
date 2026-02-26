@@ -1,0 +1,221 @@
+:root {
+  --bg: #f4f6fb;
+  --panel: #ffffff;
+  --ink: #1f2937;
+  --muted: #5b6475;
+  --accent: #2848c7;
+  --state-base: #b9c8ff;
+  --state-active-year: #4f6ddf;
+  --state-selected: #f59e0b;
+  --state-inactive: #dfe5f5;
+  --card-border: #d6dcef;
+  --timeline-bg: #eef2ff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.hero,
+main {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 1rem 1.2rem;
+}
+
+.hero h1 {
+  margin: 0.2rem 0 0.6rem;
+}
+
+main {
+  display: grid;
+  gap: 1rem;
+  padding-bottom: 2rem;
+}
+
+.panel {
+  background: var(--panel);
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(36, 47, 91, 0.08);
+  padding: 1rem;
+}
+
+.section-title p {
+  margin-top: 0.35rem;
+  color: var(--muted);
+}
+
+.year-control {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+
+#yearRange {
+  width: 100%;
+}
+
+#resetSelection {
+  width: fit-content;
+  border: 1px solid #c8d2f0;
+  background: #f7f9ff;
+  color: #2a3d88;
+  border-radius: 8px;
+  padding: 0.45rem 0.75rem;
+  cursor: pointer;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-top: 0.8rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.swatch {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  margin-right: 0.3rem;
+}
+
+.swatch.active-year {
+  background: var(--state-active-year);
+}
+
+.swatch.selected {
+  background: var(--state-selected);
+}
+
+.swatch.inactive {
+  background: var(--state-inactive);
+}
+
+#china-map {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid #d9dfef;
+}
+
+.background {
+  fill: #eef2ff;
+}
+
+.state {
+  fill: var(--state-base);
+  stroke: #415bb4;
+  stroke-width: 2;
+  transition: fill 0.2s ease, opacity 0.2s ease;
+  cursor: pointer;
+}
+
+.state.in-year {
+  fill: var(--state-active-year);
+}
+
+.state.selected {
+  fill: var(--state-selected);
+}
+
+.state.out-year {
+  fill: var(--state-inactive);
+  opacity: 0.7;
+}
+
+.timeline {
+  display: grid;
+  gap: 0.45rem;
+  margin-bottom: 0.9rem;
+}
+
+.timeline-row {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.timeline-row .name {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.timeline-row .bar-wrap {
+  background: var(--timeline-bg);
+  border-radius: 999px;
+  position: relative;
+  height: 13px;
+  overflow: hidden;
+}
+
+.timeline-row .bar {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  border-radius: 999px;
+  background: #6f87e9;
+}
+
+.selection-info {
+  border: 1px dashed #cfd7f2;
+  border-radius: 8px;
+  background: #f9fbff;
+  color: #46506a;
+  padding: 0.7rem;
+  margin-bottom: 0.8rem;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.8rem;
+}
+
+.card {
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 0.8rem;
+  background: #fbfcff;
+  outline: none;
+}
+
+.card h3 {
+  margin: 0 0 0.35rem;
+}
+
+.card p {
+  margin: 0.24rem 0;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+.card.hidden {
+  display: none;
+}
+
+.card.selected {
+  border-color: #d18b05;
+  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.2);
+}
+
+.card.in-year {
+  border-color: #5b76d7;
+}
+
+@media (max-width: 720px) {
+  .timeline-row {
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
+  }
+}
