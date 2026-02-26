@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>testAI · 五代十国疆域与时间轴</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <h1>五代十国疆域与政权时间轴</h1>
+      <p>
+        使用示意地图 + 时间轴查看 907–979 年间主要政权的疆域分布与存续时间。
+      </p>
+    </header>
+
+    <main>
+      <section class="panel controls-panel">
+        <div class="section-title">
+          <h2>时间筛选</h2>
+          <p>拖动年份滑块，地图会高亮该年份仍存在的政权；点击政权卡可查看单个政权详情。</p>
+        </div>
+        <div class="year-control">
+          <label for="yearRange">当前年份：<strong id="yearValue">960</strong></label>
+          <input id="yearRange" type="range" min="907" max="979" value="960" step="1" />
+          <button id="resetSelection" type="button">清除单政权选择</button>
+        </div>
+        <div class="legend">
+          <span><i class="swatch active-year"></i> 年份内仍存在</span>
+          <span><i class="swatch selected"></i> 当前选中政权</span>
+          <span><i class="swatch inactive"></i> 不在当前年份</span>
+        </div>
+      </section>
+
+      <section class="panel map-panel">
+        <div class="section-title">
+          <h2>疆域示意图（教学示意，非精确历史边界）</h2>
+          <p>可点击地图区域聚焦某个政权。</p>
+        </div>
+
+        <svg
+          id="china-map"
+          viewBox="0 0 980 680"
+          role="img"
+          aria-label="五代十国政权疆域示意图"
+        >
+          <rect class="background" x="0" y="0" width="980" height="680" rx="20" />
+
+          <path id="LaterLiang" class="state" d="M410 220 L510 220 L560 290 L520 360 L420 350 L380 300 Z" />
+          <path id="LaterTang" class="state" d="M300 150 L420 140 L460 210 L410 270 L320 260 L260 200 Z" />
+          <path id="LaterJin" class="state" d="M330 70 L470 70 L500 140 L430 190 L330 180 L290 120 Z" />
+          <path id="LaterHan" class="state" d="M360 95 L470 95 L490 145 L430 190 L350 185 L325 135 Z" />
+          <path id="LaterZhou" class="state" d="M390 190 L520 190 L580 260 L550 330 L450 320 L390 270 Z" />
+
+          <path id="WuYue" class="state" d="M700 360 L760 370 L770 420 L730 460 L680 440 L680 390 Z" />
+          <path id="Min" class="state" d="M740 430 L805 430 L815 500 L760 540 L710 500 Z" />
+          <path id="Chu" class="state" d="M560 350 L640 350 L670 420 L620 480 L540 460 L520 400 Z" />
+          <path id="SouthernHan" class="state" d="M610 470 L710 470 L730 550 L650 595 L570 540 Z" />
+          <path id="Jingnan" class="state" d="M520 320 L580 320 L600 380 L550 420 L500 390 Z" />
+          <path id="SouthernTang" class="state" d="M610 280 L740 290 L770 380 L700 440 L600 430 L560 360 Z" />
+          <path id="FormerShu" class="state" d="M230 250 L350 250 L380 350 L300 430 L190 390 L180 300 Z" />
+          <path id="LaterShu" class="state" d="M240 270 L360 270 L390 360 L300 450 L200 405 L190 315 Z" />
+          <path id="NorthernHan" class="state" d="M470 120 L540 120 L560 180 L510 230 L450 210 Z" />
+          <path id="NorthernSong" class="state" d="M420 180 L650 180 L730 280 L710 430 L560 470 L450 390 L390 280 Z" />
+        </svg>
+      </section>
+
+      <section class="panel details-panel">
+        <div class="section-title">
+          <h2>政权信息与时间轴</h2>
+          <p>上方为线性时间轴，下方为可交互政权卡片。</p>
+        </div>
+
+        <div id="timeline" class="timeline" aria-label="政权时间轴"></div>
+        <div id="selection-info" class="selection-info">当前未选中单个政权，显示年份内全部有效政权。</div>
+        <div id="regime-cards" class="cards"></div>
+      </section>
+    </main>
+
+    <template id="card-template">
+      <article class="card" tabindex="0">
+        <h3></h3>
+        <p class="period"></p>
+        <p class="capital"></p>
+        <p class="type"></p>
+        <p class="notes"></p>
+      </article>
+    </template>
+
+    <script src="script.js"></script>
+  </body>
+</html>
